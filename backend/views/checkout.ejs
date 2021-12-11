@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy cool new product</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <section>
+      <div class="product">
+        <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
+        <div class="description">
+          <h3>Stubborn Attachments</h3>
+          <h5>$20.00</h5>
+        </div>
+      </div>
+
+    </section>
+    <div>
+      <button type="submit" id="btn">Checkout</button>
+      </div>
+  </body>
+
+<script type="text/javascript">
+const stripe = Stripe("pk_test_51JtYOwDdCFBi5ZCFkATMF7Bhw0AihvQNRI7IGESELNOdUGiXik6VaG571xXomo5mnYDUG450qLgjxmqg4kGjgoLr00tLv8BMpx")
+const checkoutButton = document.getElementById("btn")
+checkoutButton.addEventListener("click",()=>{
+    fetch('/payment',{
+      headers: {"Content-Type":"application/json"},
+      method:"POST",
+      body:JSON.stringify({
+        "cart":[{
+          "_id":"61a53e4e2836777d8160da6c",
+          "quantity":"5"
+        },
+        {
+          "_id":"61a53fe72836777d8160da7c",
+          "quantity":"3"
+        }
+      ]
+      })
+    })
+    .then( (response)=>{
+      return response.json()
+    })
+    .then((session)=>{
+      if(session.message){
+        alert(session.message)
+        return
+      }else
+      return stripe.redirectToCheckout({sessionId:session.id})
+      
+    })
+    .then((result)=>{
+      if(result.error){
+        alert(result.error.message)
+      }
+    })
+    .catch((error)=>{
+      console.log("error",error)
+    })
+})
+</script>
+
+</html>
