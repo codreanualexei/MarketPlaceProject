@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div align="center">
+<h2>Esti aici pentru a adauga un produs nou !</h2>
+
+<form action="/createitem", method = "POST" enctype="multipart/form-data">
+  <label for="fname">Denumire/Titlu:</label><br>
+  <input type="text" id="title" name="title" value="Stake de vita"><br><br>
+  <label for="fname" >Descriere:</label><br>
+  <input type="text" id="description" name="description" width="48" value="Carne de vita angus"><br><br>
+  <label for="fname">Pret:</label><br>
+  <input type="text" id="price" name="price" value="100">  <label >RON</label><br><br>
+  <label for="fname">Alege imagine</label><br>
+  <input type="file" id="image" name="image" ><br><br><br>
+  <input type="submit" value="Adauga" id="btn">
+</form> 
+
+<p>Aceasta pagina este destinata doar administratorului pentru adauga, modifica sau sterge produsele de pe site</p>
+</div>
+</body>
+<script >
+/*
+const checkoutButton = document.getElementById("btn")
+
+const form = document.getElementById("itemForm")
+const title = document.getElementById("title")
+const description = document.getElementById("description")
+const price = document.getElementById("price")
+const inpFile = document.getElementById("image")
+
+
+form.addEventListener("submit", e=>{
+    e.preventDefault();
+
+    const endpoint = "http://localhost:3000/createitem"
+    const formData = new FormData()
+
+    formData.append("inpFile", inpFile.files[0])
+
+    fetch(endpoint,{
+        method:"POST",
+        body:formData
+    })
+    .then(res=>{
+        console.log(res)
+    })
+}); 
+*/
+</script>
+
+</html>

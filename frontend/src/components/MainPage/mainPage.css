@@ -1,0 +1,53 @@
+.mainPage {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: 'nav' 'box';
+    grid-template-rows: 10% 90%;
+    grid-template-columns: 100%;
+    /* background-color: rgba(233,237,237,1); */
+    background-color: #262324;
+    overflow-x: hidden;
+    align-items: stretch;
+}
+.navBar {
+    position: fixed;
+    z-index:2;
+    grid-area: nav;
+    height: 10vh;
+    width: 100vw;
+    background-color: #0C0A0F;
+    box-shadow: 0 10px 25px rgba(12, 10, 15,1);
+}
+.content {
+    grid-area: box;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    display: inline-flex;
+    display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 1vw;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1b1621; 
+    border-radius: 10px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #131018; 
+}

@@ -1,0 +1,80 @@
+
+
+.navBarTitle {
+    margin-left: 2vw;
+    color: white;
+    font-size: 5vh;
+    font-family: 'Poppins';
+    width: 20vw;
+    height: 8vh;
+    margin-top: -0.5vh;
+}
+.navBarSection {
+    display: grid;
+    grid-template-areas: 'name search meniu description cart notif';
+    grid-template-rows: 100%;
+    grid-template-columns: 20% 45% 9% 9% 9% 3%;
+}
+.namePart {
+    display: grid;
+    grid-area: name;
+    width: 20vw;
+    height: 10vh;
+    cursor: pointer;
+}
+.searchBarPart {
+    display: grid;
+    grid-area: search;
+    width: 45vw;
+    height: 10vh;
+}
+.meniuPart {
+    display: grid;
+    grid-area: meniu;
+    width: 9vw;
+    height: 10vh;
+}
+.descriptionPart {
+    display: grid;
+    grid-area: description;
+    width: 9vw;
+    height: 10vh;
+}
+.cartPart {
+    display: grid;
+    grid-area: cart;
+    width: 9vw;
+    height: 10vh;
+}
+.navBarSection .namePart .poza {
+    width: 10vw;
+    height: 10vh;
+    margin-top: 0vh;
+    margin-left: 2vw;
+}
+.notification {
+    display: grid;
+    grid-area: notif;
+    width: 3vw;
+    height: 10vh;
+}
+.notif1 {
+    border-radius: 50%;
+    background-color: rgb(211, 44, 44);
+    color: #ffffff;
+    font-size: 2vh;
+    text-align: center;
+    font-family: 'Poppins';
+    margin-top: 1vh;
+    width:1.7vw;
+    height: 3.2vh;
+}
+.notif2 {
+    border-radius: 50%;
+    background-color: #0C0A0F;
+    color: #0C0A0F;
+    width:1.5vw;
+    height: 3vh;
+}
+
+ 

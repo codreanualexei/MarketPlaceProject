@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+
+.firstPage {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    /* background-image: url('../../image1.jpg'); */
+    /* background-size: cover; */
+    background: #0C0A0F;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-areas: 'r1' 'r2' 'r3';
+}
+.title {
+    grid-area: r1;
+    display: flex;
+    
+}
+.login {
+    grid-area: r2;
+    
+}
+.guest {
+    grid-area: r3;
+    display: flex;
+    padding-top: 3vh;
+    
+}
+.forgotPasswordLink {
+    margin-top: 1vh;
+}
+.signUpContainer {
+    margin-top: 3vh;
+}
+.marketTitle {
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-size: larger;
+    font-family: 'Poppins';
+}
+.poza {
+    margin-top: 2vh;
+    height: 20vh;
+    width: 25vw;
+}

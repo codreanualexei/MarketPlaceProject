@@ -1,0 +1,53 @@
+.firstPage {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../../image1.jpg');
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-areas: 'r1' 'r2' 'r3';
+}
+.title {
+    grid-area: r1;
+    
+}
+.login {
+    grid-area: r2;
+    
+}
+.guest {
+    grid-area: r3;
+    
+}
+.loginBox {
+    height: 76vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    width: 40vw;
+    display: flex;
+    margin-left:30vw;
+    justify-content: center;
+    background-color: rgb(102, 155, 143, 0.4);
+    border-radius: 10%;
+}
+.field{
+    padding-top: 2vh;
+    width: 100%;
+}
+.button {
+    height: 4vh;
+    background-color: rgb(99, 131, 112);
+    color: rgb(247, 243, 233);
+    border: 2px solid rgb(11, 49, 49);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3vh;
+    border-radius: 10%;
+    margin-top: 5vh;
+    padding-top: 0.5vh;
+    padding-bottom: 4vh;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    margin-right: 1vw;
+}

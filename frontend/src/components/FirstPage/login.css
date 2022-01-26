@@ -1,0 +1,35 @@
+
+
+.loginDiv {
+    padding-top: 10vh;
+}
+.formButton {
+    height: 4vh;
+    background-color: rgb(99, 131, 112);
+    color: rgb(247, 243, 233);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3vh;
+    border-radius: 10%;
+    margin-top: 5vh;
+
+}
+.forgotPasswordBtn {
+    background-color: transparent;
+    color: rgb(5, 43, 21);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    border: none;
+    position: absolute;
+    bottom: 12vh;
+    right: 40vw;
+    font-size: 2vh;
+}
+input {
+    background-color: rgb(123, 158, 142);
+    border: none;
+    border-radius: 10%;
+    margin-left: 1.5vw;
+    padding-left: 0.5vw;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+}

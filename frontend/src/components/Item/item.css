@@ -1,0 +1,22 @@
+.price {
+    display: inline-flex;
+    margin: auto;
+}
+.buttons {
+    display: inline-flex;
+    margin: auto;
+}
+.cartIcon {
+    height: 5.5vh;
+    width: 3vw;
+    position: relative;
+    left: -4.5vw;
+}
+.addToCartWriting {
+    position: relative;
+    bottom: 7vh;
+    font-weight: 600;
+    font-family: Poppins;
+    font-size: 1vw;
+    padding-left: 1vw;
+}
