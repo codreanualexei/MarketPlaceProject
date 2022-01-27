@@ -70,9 +70,8 @@ async function pay () {
      alert(session.message)
      return
    }else
-   console.log(session.id)
+   console.log(session.id) //Asta dupa plata o sa-l trimitem la server
    const result = stripe.redirectToCheckout({sessionId:session.id})
-   console.log(result)
    return result
    
   })
@@ -100,7 +99,7 @@ async function pay () {
             <button onClick={() => pay()}>Pay Default</button>
 
             {items.map(item => (
-          <div key={item.id}>
+          <div key={item._id}>
             {Item(item.title,100,item.price)}
           </div>))}
 
