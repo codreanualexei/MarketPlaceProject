@@ -51,16 +51,18 @@ async function pay () {
    headers: {"Content-Type":"application/json"},
    method:"POST",
    body:JSON.stringify({
-     "cart":[{      //Trebuie sa faci un array din asta, cu forma asta. si la fiecare clock sa trimita ce este in cos
-       "_id":"61a53e4e2836777d8160da6c",
-       "quantity":"5"   //id-urie le iei din mainPage cumva, iti apar cu primul fetch.....
-     },
-     {
-       "_id":"61a53fe72836777d8160da7c",
-       "quantity":"3"
-     }
-   ]
-   })
+    "email":"contact.andreiescu@gmail.com",
+    "description":"blabla",
+    "itemList":[{
+      "_id":"61a53fe72836777d8160da74",
+      "units":"5"
+    },
+    {
+      "_id":"61a53fe72836777d8160da74",
+      "units":"3"
+    }
+  ]
+  })
   })
   .then( (response)=>{
    return response.json()

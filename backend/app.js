@@ -7,7 +7,7 @@ const authroute = require('./routes/authroute')
 const connDB = require('./controllers/database/connect')
 const dotenv = require('dotenv')
 const cookieParser = require("cookie-parser");
-
+const path = require('path')
 
 
 const PORT = process.env.PORT || 5000;
@@ -22,6 +22,7 @@ const app = express()
 app.use(express.json());
 app.use(bodyParser.urlencoded())
 app.use(cookieParser());
+
 
 //Database connection
 connDB.connectDB()

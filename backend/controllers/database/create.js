@@ -205,7 +205,7 @@ const createDoneCommands = (email,userId,description,total,listItems)=>{
     
     newItem.save()
         .then((res)=>{
-            console.log("doneCommand adaugat")
+            console.log("comanda adaugata")
         })
         .catch((err)=>{
             console.log("eroare adaugare comanda: ",err)
