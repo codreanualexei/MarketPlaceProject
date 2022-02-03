@@ -2,8 +2,7 @@ const express = require('express')
 var bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-const dbroutes = require('./routes/dbroutes')
-const authroute = require('./routes/authroute')
+const routes = require('./routes/routes')
 const connDB = require('./controllers/database/connect')
 const dotenv = require('dotenv')
 const cookieParser = require("cookie-parser");
@@ -30,10 +29,6 @@ connDB.connectDB()
 //set view engine
 app.set('view engine','ejs')
 
-app.get('/',(req,res)=>{
-    res.render('checkout')
-})
-
 app.get('/successpay',(req,res)=>{
     res.render('successpay')
 })
@@ -41,22 +36,19 @@ app.get('/cancelpay',(req,res)=>{
     res.render('cancelpay')
 })
 
-//pagini
-app.get('/addItem',(req,res)=>{
-    res.render('addItem')
-})
-
 //Make public static folders
 app.use('/uploads', express.static('uploads')) //for images
 app.use('/public', express.static('public'))  //for public date(disign)
 app.use('/pub', express.static('marketplace'))   //for pages
+app.use(express.static(path.join(__dirname, '../frontend/build'))) // Serve static files from the React frontend app
 
-//User routes defined in ./routes/dbroutes
-app.use(dbroutes)
+//User routes defined in ./routes/routes
+app.use(routes)
 
-//Aythentication routes
-app.use(authroute)
-
+// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+})
 
 
 //Start the server and listen on port (PORT), located in env file
