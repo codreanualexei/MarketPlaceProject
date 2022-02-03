@@ -16,20 +16,10 @@ var upload = multer({
     storage: storage,
     fileFilter: function(req, file, callback){
 
-        const fileType = file.mimetype.toLocaleLowerCase()
-        if(
-            fileType == "image/png" ||
-            fileType == "image/jpg"
-        ){
             callback(null,true)
-        }
-        else
-        {
-            callback(null,false)
-        }
     },
     limits: {
-        fileSize: 1024*1024*2
+        fileSize: 1024*1024*4
     }
 })
 

@@ -27,8 +27,8 @@ router.post('/addCommentToItem',DatabaseAdd.findItemByIdAndAddComment)
 router.post('/addLikeToComment',DatabaseAdd.findCommentByIdAndAddLike)
 
 //Find
-router.post('/finduser',DatabaseFind.findUser)
 router.post('/findArrOfItems',DatabaseFind.findArrOfItems)
+router.post('/finduser',DatabaseFind.findUser)
 router.post('/finduserById',DatabaseFind.findUserByid)
 router.post('/findUserByEmail', DatabaseFind.findUserByemail)
 router.get('/getAllUsers',DatabaseFind.findAllUsers)
@@ -42,6 +42,9 @@ router.get('/getAllItems',DatabaseFind.findAllItems)
  router.post('/deleteUserById',DatabaseDelete.findUserByIdAndDelete)
 
 //checkout
-router.post('/payment',pay)
+router.post('/payment',pay.payment)
+router.get('/donepay',pay.checkPaymentStatus)
+
+router.get('/getallcommands',DatabaseFind.findAllDoneCommands)
 
 module.exports = router;

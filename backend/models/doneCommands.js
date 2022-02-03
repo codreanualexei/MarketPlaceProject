@@ -4,12 +4,8 @@ const User = require('./user')
 const Item = require('./item')
 
 
-var MyModel = mongoose.model('pendingCommand', new Schema(
+var MyModel = mongoose.model('doneCommand', new Schema(
     {   
-        user:{
-            type:mongoose.Types.ObjectId,
-            ref:"User",
-        },
         description:{
             type:String,
         },
@@ -28,7 +24,7 @@ var MyModel = mongoose.model('pendingCommand', new Schema(
             required:true
         },
         doneAt: { 
-            type: Date, default: Date.now
+            type: Date, default: new Date(Date.UTC(0, 0, 0, 4, 0, 0)+ Date.now())
              }
      }));
         

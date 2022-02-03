@@ -18,6 +18,10 @@ var MyModel = mongoose.model('Item', new Schema(
             type:Number,
             required:true
         },
+        stoc:{
+            type:Number,
+            required:true
+        },
         usersLiked:[ 
             {
             _id:{

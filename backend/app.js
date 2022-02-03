@@ -6,6 +6,8 @@ const dbroutes = require('./routes/dbroutes')
 const authroute = require('./routes/authroute')
 const connDB = require('./controllers/database/connect')
 const dotenv = require('dotenv')
+const cookieParser = require("cookie-parser");
+
 
 
 const PORT = 5000;
@@ -19,6 +21,7 @@ const app = express()
 //Use json format fot this application
 app.use(express.json());
 app.use(bodyParser.urlencoded())
+app.use(cookieParser());
 
 //Database connection
 connDB.connectDB()
@@ -47,10 +50,11 @@ app.use('/uploads', express.static('uploads')) //for images
 app.use('/public', express.static('public'))  //for public date(disign)
 app.use('/pub', express.static('marketplace'))   //for pages
 
-//Aythentication routes
-app.use(authroute)
 //User routes defined in ./routes/dbroutes
 app.use(dbroutes)
+
+//Aythentication routes
+app.use(authroute)
 
 
 

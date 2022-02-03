@@ -1,39 +1,23 @@
 //const Joi = require('@hapi/joi')
 const User = require('../../models/user')
-const databaseCreate = require('../database/create')
+const database = require('../database/create')
 var url = require('url')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const crypto = require("crypto");
 const pendUser = require("../../models/pendingUsers")
 
-//Validation of data
-// const Schema = {
-//     fname:Joi.string().required(),
-//     lname:Joi.string().required(),
-//     email:Joi.string().required().unique(),
-//     password:Joi.string().required(),
-//     tel:Number().unique(),
-//     items:  [
-//             {
-//             type:Schema.Types.ObjectId,
-//             ref:"Item"
-//             }
-//                 ]
-// }
-
-
 
 
 const sendEmai = (toEmail,token)=>{
     var nodemailer = require('nodemailer');
-    var url = 'http://localhost:3000/validatetoken:'+token
+    var url = process.env.DOMAIN + '/validatetoken:'+token
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'codmarketplaceal@gmail.com',
-        pass: 'djtiesto1'
+        user: process.env.EMAILUSER,
+        pass: process.env.EMAILPASS
       }
     });
     
@@ -83,7 +67,9 @@ const SingUp = (req,res)=>{
             //Generate unique id, generate token, create temporar user with expiration time, and send an emai with activation link
             const id = crypto.randomBytes(16).toString("hex");
             token = genToken(id,process.env.TOKEN_SECRET)
-            databaseCreate.createPendingUser(req,res,token)
+            console.log(token)
+            database.createUser(req,res,{"message":"OK"},{"message":"failure"})
+            console.log(token)
             sendEmai(req.body.email,token)
         }
     })
@@ -96,7 +82,7 @@ const validPass = (pass,hash)=>{
 }
 
 const genToken = (id,secret)=>{
-    return jwt.sign({"_id":id},secret,{expiresIn:"60s"});
+    return jwt.sign({"_id":id},secret,{expiresIn:"60m"});
 }
 
 const LogIn =  (req,res)=>{
@@ -141,4 +127,4 @@ const verifyAccessToken= (req, res, next)=>{
 
 //Refresh token !
 
-module.exports = {SingUp,LogIn,verifyAccessToken,sendEmai,verifyEmailUsingToken}
+module.exports = {genToken,SingUp,LogIn,verifyAccessToken,sendEmai,verifyEmailUsingToken}

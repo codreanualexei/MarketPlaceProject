@@ -1,6 +1,7 @@
 
 const User = require('../../models/user')
 const Items = require('../../models/item')
+const doneCommands = require("../../models/doneCommands")
 
 const findAllUsers=(req,res)=>{
 
@@ -12,6 +13,18 @@ const findAllUsers=(req,res)=>{
             res.status(400).send(wrong)
        })
     
+}
+
+const findAllDoneCommands=(req,res)=>{
+
+    doneCommands.find({}).populate("items")
+      .then(items=>{
+          res.status(200).send(items)
+      })
+      .catch(wrong=>{
+           res.status(400).send(wrong)
+      })
+   
 }
 
     const findUser=(req,res)=>{
@@ -78,4 +91,4 @@ const findAllUsers=(req,res)=>{
    
 }
 
-    module.exports = {findArrOfItems,findAllUsers,findUser,findUserByemail,findUserByid,findAllItems}
+    module.exports = {findAllDoneCommands,findArrOfItems,findAllUsers,findUser,findUserByemail,findUserByid,findAllItems}

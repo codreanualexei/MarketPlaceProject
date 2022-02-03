@@ -1,27 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const Auth = require('../controllers/auth/auth')
-
+const Create = require('../controllers/database/create')
 
 //AuthEmailUsingToken
-router.get('/validatetoken:token', Auth.verifyEmailUsingToken)
+//router.get('/validatetoken:token', Auth.verifyEmailUsingToken)
+//router.get('/validatetoken:token', Create.verifyToken)
 
 //Authentication
-router.post('/singup',Auth.SingUp)
+//router.post('/singup',Create.createUser)
 router.post('/login',Auth.LogIn)
-router.post('/verifyToken',Auth.verifyAccessToken)
+router.use(Auth.verifyAccessToken)
 
 //login Super
-router.get('/SuperPavel:login',(req,res)=>{
-    var tmp = req.params.login
-    const pass = tmp.slice(1)
-    
-    console.log(req.params)
-    if(pass ===process.env.SUPERPASS){
-        res.render('addItem')
-    }else{
-        res.status(400)
-    }
-
+router.get('/thepavel',(req,res)=>{
+    res.render('addItem')
 })
+
 module.exports = router;

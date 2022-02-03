@@ -2,18 +2,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const User = require('./user')
 const Item = require('./item')
+const moment = require('moment-timezone');
+const dateRO = new Date()
 
-
-var MyModel = mongoose.model('pendingCommand', new Schema(
+var newSchema = new Schema(
     {   
-        type:{
+        email:{
             type:String,
-            required:true
-
-        },
-        user:{
-            type:mongoose.Types.ObjectId,
-            ref:"User",
+            required:true,
+            unique:true
         },
         description:{
             type:String,
@@ -36,8 +33,14 @@ var MyModel = mongoose.model('pendingCommand', new Schema(
             required:true
         },
         createdAt: { 
-            type: Date, default: Date.now
+            "type": Date, expireAfterSeconds:300, default: new Date(Date.UTC(0, 0, 0, 4, 0, 0)+ Date.now())
              }
-     }));
         
+     },{  timestamps:true}
+     )
+
+
+var MyModel = mongoose.model('pendingCommand',newSchema );
+
+    // new Date(Date.UTC(0, 0, 0, 4, 0, 0)+ Date.now())
 module.exports= MyModel
