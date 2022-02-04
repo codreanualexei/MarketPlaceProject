@@ -10,13 +10,13 @@ const Auth = require('../controllers/auth/auth')
 
 
 //checkout
-router.post('/payment',pay.payment)
-router.get('/donepay',pay.checkPaymentStatus)
-router.get('/getAllItems',DatabaseFind.findAllItems)
+router.post('/api/payment',pay.payment)
+router.get('/api/donepay',pay.checkPaymentStatus)
+router.get('/api/getAllItems',DatabaseFind.findAllItems)
 //Find
-router.post('/findArrOfItems',DatabaseFind.findArrOfItems)
+router.post('/api/findArrOfItems',DatabaseFind.findArrOfItems)
 
 //Above requires authentication with /login
-router.post('/login',Auth.LogIn)
+router.post('/api/login',Auth.LogIn)
 
 module.exports = router;
