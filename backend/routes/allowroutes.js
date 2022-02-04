@@ -9,10 +9,13 @@ const pay = require('../controllers/stripe/stripe')
 const Auth = require('../controllers/auth/auth')
 
 
-//checkout
+router.get('/getAllItems',DatabaseFind.findAllItems)
+router.get('/api/getAllItems',DatabaseFind.findAllItems)
+
+
 router.post('/api/payment',pay.payment)
 router.get('/api/donepay',pay.checkPaymentStatus)
-router.get('/api/getAllItems',DatabaseFind.findAllItems)
+
 //Find
 router.post('/api/findArrOfItems',DatabaseFind.findArrOfItems)
 
