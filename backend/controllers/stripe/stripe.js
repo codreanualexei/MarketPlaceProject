@@ -71,7 +71,7 @@ const createSession = async (items,req,res)=>{
                 
 }
 
-const checkPaymentStatus = async(req,res)=>{
+const checkPaymentStatus = async(req,res,next)=>{
 
         try{
         console.log(req.cookies.signatureandreiescuP)
@@ -110,9 +110,11 @@ const checkPaymentStatus = async(req,res)=>{
     catch(err){
         res.send({"message":"error data"});
     }
+
+    next();
 }
 
-const payment = async (req,res)=>{
+const payment = async (req,res,next)=>{
 
     console.log("req.bodyy: ",req.body)
     Item.find({
@@ -143,7 +145,7 @@ const payment = async (req,res)=>{
          
     });
 
-    
+    next();
 
 }
 

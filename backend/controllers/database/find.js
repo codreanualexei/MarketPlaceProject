@@ -62,17 +62,17 @@ const findAllDoneCommands=(req,res)=>{
         }).populate("items")
     }
 
-    const findAllItems=(req,res)=>{
+    const findAllItems=(req,res,next)=>{
 
         Items.find({})
           .then(items=>{
-              console.log("items FOUND: ",items)
+              //console.log("items FOUND: ",items)
               res.status(200).send(items)
           })
           .catch(wrong=>{
                res.status(400).send(wrong)
           })
-       
+       next();
    }
 
 
