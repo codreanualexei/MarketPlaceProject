@@ -92,6 +92,7 @@ const checkPaymentStatus = async(req,res)=>{
                 res.status(200).json({"message":"Comanda a fost plasata"})
                })
                .catch((err)=>{
+                   console.log("eroare cautare id comanda: ",err)
                 res.status(400).json({"message":"eroare, va rog sa ne contactati"})
                })
                
