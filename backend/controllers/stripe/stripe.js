@@ -7,7 +7,6 @@ const pendingCommands = require("../../models/pendingCommands")
 
 const express = require('express');
 
-//const domain = 'http://localhost:5000/'
 
 var createItem = (title,price,quantity)=>{
    var json = {
@@ -32,8 +31,8 @@ const createSession = async (items,req,res)=>{
             payment_method_types: ['card'],
             line_items:items,
             mode:"payment",
-            success_url:process.env.DOMAIN+'/donepay',
-            cancel_url:process.env.DOMAIN+"/cancelpay"
+            success_url:process.env.DOMAIN+'/api/donepay',
+            cancel_url:process.env.DOMAIN+"/api/cancelpay"
         })
         //Trebuie adaugat id-ul in DB
                 console.log("pay_ID:",session.payment_intent)
