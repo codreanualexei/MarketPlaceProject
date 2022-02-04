@@ -43,7 +43,12 @@ app.use('/pub', express.static('marketplace'))   //for pages
 app.use(express.static(path.join(__dirname, '../frontend/build'))) // Serve static files from the React frontend app
 
 //User routes defined in ./routes/routes
-app.use(routes)
+app.all("*", (req, res, next) => {
+    console.log("request made!!!:",req.path); // do anything you want here
+    next();
+});
+
+app.use('/api',routes)
 
 //if not API go to frontend
 app.get('*', (req, res) => {

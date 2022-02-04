@@ -26,6 +26,7 @@ var createItem = (title,price,quantity)=>{
 
 const createSession = async (items,req,res)=>{
     
+    console.log("crearea sesiunii")
     const session =  await stripe.checkout.sessions.create(
         {
             payment_method_types: ['card'],
@@ -113,6 +114,7 @@ const checkPaymentStatus = async(req,res)=>{
 
 const payment = async (req,res)=>{
 
+    console.log("req.bodyy: ",req.body)
     Item.find({
         '_id': { $in: req.body.itemList}
     }, function(err, docs){
@@ -127,14 +129,15 @@ const payment = async (req,res)=>{
         else{
             var listItems=[]
             items = req.body.itemList
-           // console.log("Docs:",docs) - result from search
-           // console.log("items:",items) - cart sent
+            console.log("Docs:",docs) 
+            console.log("items:",items) 
 
             for (var i = 0, len = docs.length; i < len; i++) {
                 listItems.push(createItem(docs[i].title,docs[i].price,items[i].units))
                 }
                 
-                console.log("items:",listItems)
+                
+                console.log("items organizat:",listItems)
                 createSession(listItems,req,res)
         }
          

@@ -20,7 +20,7 @@ export function MainPage(props) {
   useEffect(() => {
     
     //HTTP request cu metoda 'GET'
-    fetch("/getAllItems") //o ruta locala cand pornesti serverul
+    fetch("/api/getAllItems") //o ruta locala cand pornesti serverul
       .then(res => res.json()) //primul pas dupa request
       .then(                   //al doilea pas dupa request
         (result) => {
@@ -47,14 +47,14 @@ async function pay () {
   const stripe = await stripePromise;
 
   console.log("fuctia PAY")
-  fetch('/payment',{
+  fetch('/api/payment',{
    headers: {"Content-Type":"application/json"},
    method:"POST",
    body:JSON.stringify({
     "email":"contact.andreiescu@gmail.com",
     "description":"blabla",
     "itemList":[{
-      "_id":"61a53fe72836777d8160da74",
+      "_id":"61a53e4e2836777d8160da6c",
       "units":"5"
     },
     {

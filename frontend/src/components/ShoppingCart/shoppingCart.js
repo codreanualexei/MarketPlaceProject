@@ -48,7 +48,7 @@ export function ShoppingCart (props) {
   // similar to componentDidMount()
 
   useEffect(() => {
-    fetch("/findArrOfItems",{
+    fetch("/api/findArrOfItems",{
         headers: {"Content-Type":"application/json"},
         method:"POST",
         body:JSON.stringify({

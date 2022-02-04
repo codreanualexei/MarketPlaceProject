@@ -66,7 +66,7 @@ const findAllDoneCommands=(req,res)=>{
 
         Items.find({})
           .then(items=>{
-              console.log("donecommands FOUND: ",items)
+              console.log("items FOUND: ",items)
               res.status(200).send(items)
           })
           .catch(wrong=>{
