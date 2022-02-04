@@ -2,7 +2,7 @@ const express = require('express')
 var bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-const routes = require('./routes/routes')
+const allowroutes = require('./routes/allowroutes')
 const connDB = require('./controllers/database/connect')
 const dotenv = require('dotenv')
 const cookieParser = require("cookie-parser");
@@ -48,7 +48,7 @@ app.all("*", (req, res, next) => {
     next();
 });
 
-app.use('/api',routes)
+app.use('/api',allowroutes)
 
 console.log(" sunt after API !")
 //if not API go to frontend
