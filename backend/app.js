@@ -50,6 +50,7 @@ app.all("*", (req, res, next) => {
 
 app.use('/api',routes)
 
+console.log(" sunt after API !")
 //if not API go to frontend
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
