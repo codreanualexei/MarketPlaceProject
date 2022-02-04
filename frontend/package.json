@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://codreanualexei.xyz/",
+  "proxy": "http://codreanualexei.xyz/api/",
   "eslintConfig": {
     "extends": [
       "react-app",
