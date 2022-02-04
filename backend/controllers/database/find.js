@@ -72,7 +72,6 @@ const findAllDoneCommands=(req,res)=>{
           .catch(wrong=>{
                res.status(400).send(wrong)
           })
-       next();
    }
 
 
