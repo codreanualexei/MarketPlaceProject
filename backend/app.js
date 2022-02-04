@@ -45,10 +45,12 @@ app.use(express.static(path.join(__dirname, '../frontend/build'))) // Serve stat
 //User routes defined in ./routes/routes
 app.use(routes)
 
-// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+//if not API go to frontend
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
-})
+    res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+  })
+
+
 
 
 //Start the server and listen on port (PORT), located in env file

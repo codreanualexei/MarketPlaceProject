@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const path = require('path')
 const upload = require('../controllers/upload/uploadimg')
 const DatabaseCreate = require('../controllers/database/create')
 const DatabaseFind = require('../controllers/database/find')
@@ -15,18 +16,17 @@ router.get('/getAllItems',DatabaseFind.findAllItems)
 //Find
 router.post('/findArrOfItems',DatabaseFind.findArrOfItems)
 
-
 //Above requires authentication with /login
 router.post('/login',Auth.LogIn)
+
+//Toke Verification 
 router.use(Auth.verifyAccessToken)
 
-//login Super
+//Pagina de adaugat
 router.get('/thepavel',(req,res)=>{
     res.render('addItem')
 })
-
 router.get('/getallcommands',DatabaseFind.findAllDoneCommands)
-
 router.post('/createitem',upload.single('image'), DatabaseCreate.createItem)
 router.post('/creatependingcommand',DatabaseCreate.createPendingCommand)
 

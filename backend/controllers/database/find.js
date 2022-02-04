@@ -19,7 +19,7 @@ const findAllDoneCommands=(req,res)=>{
 
     doneCommands.find({}).populate("items")
       .then(items=>{
-          res.status(200).send(items)
+          res.status(200).json({"comenzi":items})
       })
       .catch(wrong=>{
            res.status(400).send(wrong)
@@ -66,6 +66,7 @@ const findAllDoneCommands=(req,res)=>{
 
         Items.find({})
           .then(items=>{
+              console.log("donecommands FOUND: ",items)
               res.status(200).send(items)
           })
           .catch(wrong=>{
