@@ -7,12 +7,55 @@ import { useState, useEffect } from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 
 
-
 export function MainPage(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
+  // las ce e mai sus ca sa mearga si scriu ce ar merge mai  bn pentru items
+
+  let produs = {
+    name:'',
+    quantity:0,
+    price:0
+  }
+
+  const [elements, setElemet] = useState([produs]);
+
+  
+
+
+  //--- !!State for sigle browser app!! Aici pui toate state-urile aplicatiei pentru a fi sigura ca se face re-render cand schimbi aici state-ul
+
+  var [number, setNumber] = useState(0); //Number este numarul de click-uri sau item-uri
+  //Aceasta functie va fi pasata ca parametru, este daca ca o callback function, adica un pointer, cand va fi apelata dintr-o alta componenta defapt se va apela aceasta functie, si va schimba state-ul acestei componente(mainPage)
+  const CartCircle = ()=>{
+
+      console.log("S-a apelat CartCircle") 
+      setNumber(number+1)   // Cand e apelata functia se incrementeaza number cu 1 si returneaza
+      return number;
+  }
+
+  const addElement= (newName,newPrice)=>{
+
+    let exists = elements.forEach(element => {
+        if(element.name==newName){
+          element.quantity= element.quantity+1 //modificam cantitate
+          setItems(elements)  // salvam noul array ca new state.
+          return 0;
+        }
+    });
+
+    if(!exists){
+      let newItem={
+        name:newName,
+        quantity:1,
+        price:newPrice
+      }
+      setItems(items.push(newItem))  //Adaugam in array un item nou si setam noul array ca state nou
+    }
+  }
+  ///-----------------
   
   // Note: the empty deps array [] means
   // this useEffect will run once
@@ -41,7 +84,7 @@ export function MainPage(props) {
  // fetch('route',{JSON parameters})
  //Daca apesi butonul se executa request cu parametri (POST) si te redirectioneaza pe pagina de plata
 // In continuarea pentru plata trebuie sa faci un array pt cart
- const stripePromise = loadStripe("pk_test_51JtYOwDdCFBi5ZCFkATMF7Bhw0AihvQNRI7IGESELNOdUGiXik6VaG571xXomo5mnYDUG450qLgjxmqg4kGjgoLr00tLv8BMpx")
+const stripePromise = loadStripe("pk_test_51JtYOwDdCFBi5ZCFkATMF7Bhw0AihvQNRI7IGESELNOdUGiXik6VaG571xXomo5mnYDUG450qLgjxmqg4kGjgoLr00tLv8BMpx")
 
 async function pay () {
   const stripe = await stripePromise;
@@ -88,12 +131,10 @@ async function pay () {
 }
 
 
-
-
     return (
         <section className='mainPage'>
             <section className='navBar'>
-                <NavBar />
+                <NavBar numberOfItems={number}/> 
 
             </section>
             <section className='content'>
@@ -102,7 +143,7 @@ async function pay () {
 
             {items.map(item => (
           <div key={item._id}>
-            {Item(item.title,100,item.price)}
+            <Item description= {item.title} stars={100} itemPrice ={item.price} image={item.image} CartCircle ={CartCircle} addItem={addElement} />
           </div>))}
 
                 {/* {Item('Telefon mobil Apple iPhone 13 Pro Max, 128GB, 5G, Sierra Blue',5,5000)}

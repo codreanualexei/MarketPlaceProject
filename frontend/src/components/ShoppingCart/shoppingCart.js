@@ -10,7 +10,7 @@ import { useEffect, useRef } from 'react';
 import { CartCircle } from '../NavBar/navBar';
 import { withTheme } from 'styled-components';
 
-
+//Increase, Decrease si shoppingCart sunt functii diferite si au state diferit !
 export function increase (x) {
     number[x] = number[x] +1;
     console.log("INCREASED");

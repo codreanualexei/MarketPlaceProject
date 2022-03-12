@@ -2,9 +2,9 @@ import './navBar.css';
 import { useHistory } from "react-router-dom";
 import Logo from '../../../src/logo.jpeg';
 import styled from 'styled-components';
-import { nrOfItems, number } from '../Item/item';
+import { nrOfItems } from '../Item/item';
 import useForceUpdate from 'use-force-update';
-
+import { useState } from 'react';
 import { useEffect, fetchData, forceUpdate, styles } from 'react';
 
 const Cart = styled.div`
@@ -40,19 +40,10 @@ const Description = styled.div`
     color: #8E888A;
     cursor: pointer;
 `
-export function CartCircle() {
-
-    console.log("ONCLICK");
-    var nrOfItems=0;
-    for (var i=0; i<number.length; i++) {
-        nrOfItems = nrOfItems + number[i];
-    }
-    console.log("NR OF ITEMS " + nrOfItems);
-    return nrOfItems;
-}
-
 
 export function NavBar(props) {
+    
+    const numberOfItems = props.numberOfItems
 
     const history = useHistory();
     const shoppingCartRoute = () => {
@@ -87,7 +78,8 @@ export function NavBar(props) {
             </section>
             <section className='notification'>
 
-                <div className={CartCircle()>0 ? 'notif1' : 'notif2' }>{CartCircle()}</div>
+            <div className={numberOfItems>0 ? 'notif1' : 'notif2' }>{numberOfItems}</div>
+                
             </section>
             
         </section>

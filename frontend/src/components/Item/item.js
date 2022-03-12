@@ -138,7 +138,19 @@ export function addElement (x) {
 }
 
 
-export default function Item(description,stars, itemPrice, newPrice, ) {
+export default function Item(props) {
+   
+    const description = props.description
+    const stars = props.stars
+    const itemPrice = props.itemPrice
+    const newPrice = props.newPrice
+    const image = props.image
+    const CartCircle = props.CartCircle
+    //const addElement = props.addItem
+
+    const server = 'https://andreiescu.herokuapp.com/uploads/1638219342974.png'
+
+
     return (
         <Container>
             <Image />
@@ -160,7 +172,7 @@ export default function Item(description,stars, itemPrice, newPrice, ) {
             <Price> {itemPrice}</Price>
             <NewPrice> {newPrice}</ NewPrice>
             </div>
-            <AddToCart className="addButton" onClick={() => {addElement(description); CartCircle(); }}><img className='cartIcon' src={CartIcon}/><h1 className='addToCartWriting'>Add to Cart</h1></AddToCart>
+            <AddToCart className="addButton" onClick={() => {addElement(description); props.CartCircle(); }}><img className='cartIcon' src={server}/><h1 className='addToCartWriting'>Add to Cart</h1></AddToCart>
             <div className='buttons'>
             <AddToFavourites />
             <AddToCompare />
