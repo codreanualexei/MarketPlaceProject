@@ -7,11 +7,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { MainPage } from './components/MainPage/mainPage';
 import {ShoppingCart} from './components/ShoppingCart/shoppingCart';
 import { AboutUs } from './components/AboutUs/aboutUs';
+import { NavBar } from './components/NavBar/navBar';
 
 function App() {
   
   return (
       <main>
+      <NavBar numberOfItems={number}/>
         <BrowserRouter>
             <Switch>
                 <Route path="/" component={AccountBox} exact />

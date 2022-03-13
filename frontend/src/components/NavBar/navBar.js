@@ -43,7 +43,7 @@ const Description = styled.div`
 
 export function NavBar(props) {
     
-    const numberOfItems = props.numberOfItems
+    const numberOfItems = props.numberOfItems;
 
     const history = useHistory();
     const shoppingCartRoute = () => {

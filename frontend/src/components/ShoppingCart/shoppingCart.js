@@ -89,7 +89,7 @@ export function ShoppingCart (props) {
     return (
         <section className="shoppingCart">
             <section className='navBar'>
-                <NavBar />
+                <NavBar/>
             
             </section>
             <section className='content' >

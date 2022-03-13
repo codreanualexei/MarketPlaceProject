@@ -172,7 +172,7 @@ export default function Item(props) {
             <Price> {itemPrice}</Price>
             <NewPrice> {newPrice}</ NewPrice>
             </div>
-            <AddToCart className="addButton" onClick={() => {addElement(description); props.CartCircle(); }}><img className='cartIcon' src={server}/><h1 className='addToCartWriting'>Add to Cart</h1></AddToCart>
+            <AddToCart className="addButton" onClick={() => {addElement(description); CartCircle(); }}><img className='cartIcon' src={server}/><h1 className='addToCartWriting'>Add to Cart</h1></AddToCart>
             <div className='buttons'>
             <AddToFavourites />
             <AddToCompare />
