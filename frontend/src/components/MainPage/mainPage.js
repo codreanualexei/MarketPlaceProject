@@ -137,31 +137,14 @@ async function pay () {
                 <NavBar numberOfItems={number}/> 
 
             </section>
-            <section className='content'>
-            
-            <button onClick={() => pay()}>Pay Default</button>
+            <section className='mainContent'>
+{/*             
+            <button onClick={() => pay()}>Pay Default</button> */}
 
             {items.map(item => (
           <div key={item._id}>
-            <Item description= {item.title} stars={100} itemPrice ={item.price} image={item.image} CartCircle ={CartCircle} addItem={addElement} />
+            {Item(<img src="{{server + item.image}}"/>, item.title, item.description, item.price)}
           </div>))}
-
-                {/* {Item('Telefon mobil Apple iPhone 13 Pro Max, 128GB, 5G, Sierra Blue',5,5000)}
-                {Item('Telefon mobil Huawei Y6P, Dual SIM, 64GB, 4G, Midnight Black',4.5,6000,5000)}
-                {Item('Telefon mobil Samsung Galaxy F02s, Dual SIM, 32GB, 3GB RAM, 4G',1,800,700)}
-                {Item('bla bla bla',1,500,100)}
-                {Item('Telefon mobil Apple iPhone 13 Pro Max, 128GB, 5G, Sierra Blue',5,5000)}
-                {Item('Telefon mobil Huawei Y6P, Dual SIM, 64GB, 4G, Midnight Black',4.5,6000,5000)}
-                {Item('Telefon mobil Samsung Galaxy F02s, Dual SIM, 32GB, 3GB RAM, 4G',1,800,700)}
-                {Item('bla bla bla',1,500,100)}
-                {Item('Telefon mobil Apple iPhone 13 Pro Max, 128GB, 5G, Sierra Blue',5,5000)}
-                {Item('Telefon mobil Huawei Y6P, Dual SIM, 64GB, 4G, Midnight Black',4.5,6000,5000)}
-                {Item('Telefon mobil Samsung Galaxy F02s, Dual SIM, 32GB, 3GB RAM, 4G',1,800,700)}
-                {Item('bla bla bla',1,500,100)}
-                {Item('Telefon mobil Apple iPhone 13 Pro Max, 128GB, 5G, Sierra Blue',5,5000)}
-                {Item('Telefon mobil Huawei Y6P, Dual SIM, 64GB, 4G, Midnight Black',4.5,6000,5000)}
-                {Item('Telefon mobil Samsung Galaxy F02s, Dual SIM, 32GB, 3GB RAM, 4G',1,800,700)}
-               */}
             </section>
 
         </section>

@@ -13,7 +13,6 @@ function App() {
   
   return (
       <main>
-      <NavBar numberOfItems={number}/>
         <BrowserRouter>
             <Switch>
                 <Route path="/" component={AccountBox} exact />

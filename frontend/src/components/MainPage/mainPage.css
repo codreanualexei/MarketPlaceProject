@@ -19,9 +19,9 @@
     background-color: #0C0A0F;
     box-shadow: 0 10px 25px rgba(12, 10, 15,1);
 }
-.content {
+.mainContent {
     grid-area: box;
-    padding-top: 1vh;
+    padding-top: 6vh;
     padding-left: 1vw;
     padding-right: 1vw;
     display: inline-flex;

@@ -8,15 +8,16 @@ import { ShoppingCart } from "../ShoppingCart/shoppingCart";
 import { refreshPage } from "../NavBar/navBar";
 import { CartCircle } from "../NavBar/navBar";
 
+
 const Container = styled.div`
-width: 15vw;
-height: 55vh;
+width: 30vw;
+height: 75vh;
 display: flex;
 flex-direction:column;
 background-color: #0C0A0F;
 border-radius: 3%;
-margin-right:0.5vw;
-margin-left:0.5vw;
+margin-right:1vw;
+margin-left:1vw;
 margin-bottom: 2vh;
 border: 1px solid transparent;
 
@@ -26,28 +27,28 @@ border: 1px solid transparent;
 }
 `;
 const Image = styled.div`
-width: 14.5vw;
-height: 30vh;
+width: 28.5vw;
+height: 43vh;
 display: flex;
 flex-direction:column;
 background-color: white;
 margin-left:auto;
 margin-right:auto;
-margin-top:0.5vh;
+margin-top:1.5vh;
 border-radius: 3%;
 background: rgba(244,246,246,1);
 `
-const Description = styled.div`
-width: 14.5vw;
+const Name = styled.div`
+width: 28.5vw;
 height: 1vh;
 margin:auto;
 margin-right:auto;
-margin-top:0.5vh;
+margin-top:1.5vh;
 border-radius: 3%;
 color: #8E888A;
 font-weight: 600;
 font-family: Poppins;
-font-size: 0.8vw;
+font-size: 1.5vw;
 text-align: center;
 `
 const Rating = styled.div`
@@ -55,12 +56,24 @@ margin: auto;
 height: 1vh;
 `
 const Price = styled.div`
-width: 5vw;
+margin:auto;
+margin-right:auto;
+margin-top:0.5vh;
 height: 2vh;
 color: #8E888A;
 font-weight: 600;
 font-family: Poppins;
-font-size: 0.8vw;
+font-size: 1.1vw;
+`
+const Description = styled.div`
+margin:auto;
+margin-right:auto;
+margin-top:2.5vh;
+height: 2vh;
+color: #8E888A;
+font-weight: 600;
+font-family: Poppins;
+font-size: 0.9vw;
 `
 const NewPrice = styled.div`
 height: 2vh;
@@ -68,16 +81,21 @@ width: 5vw;
 color: #8E888A;
 font-weight: 600;
 font-family: Poppins;
-font-size: 0.8vw;
+font-size: 1.3vw;
 `
 const AddToCart = styled.button`
 height: 6vh;
+width: 10vw;
+font-weight: 600;
+font-family: Poppins;
+font-size: 1vw;
 background-image: url("./cartIcon.png");
 background-color: #1b1621;
 border-radius: 15%;
 border: none;
-margin-left: 1vw;
-margin-right: 1vw;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 3vh;
 color: #8E888A;
 cursor: pointer;
     &:active{
@@ -116,7 +134,7 @@ export var nrOfItems=0;
     //     }
     //     console.log("aaa");
     // }
-export function addElement (x) {
+export function AddElement (x) {
     console.log(x);
     const exist = itemName.includes(x);
         if(exist) {
@@ -141,9 +159,8 @@ export function addElement (x) {
 export default function Item(props) {
    
     const description = props.description
-    const stars = props.stars
+    const name = props.name
     const itemPrice = props.itemPrice
-    const newPrice = props.newPrice
     const image = props.image
     const CartCircle = props.CartCircle
     //const addElement = props.addItem
@@ -153,9 +170,9 @@ export default function Item(props) {
 
     return (
         <Container>
-            <Image />
-            <Description> {description}</Description>
-            <Rating>
+            <Image >{image}</Image>
+            <Name > {name}</Name>
+            {/* <Rating>
                 <ReactStars
                     count={5}
                     value = {stars}
@@ -167,17 +184,18 @@ export default function Item(props) {
                     activeColor="#fc9f07"
                     edit = {false}
                 />
-            </ Rating>
+            </ Rating> */}
+            <Description> {description} </Description>
             <div className='price'>
-            <Price> {itemPrice}</Price>
-            <NewPrice> {newPrice}</ NewPrice>
+            <Price> {itemPrice + " RON"}</Price>
+            {/* <NewPrice> {newPrice}</ NewPrice> */}
             </div>
-            <AddToCart className="addButton" onClick={() => {addElement(description); CartCircle(); }}><img className='cartIcon' src={server}/><h1 className='addToCartWriting'>Add to Cart</h1></AddToCart>
-            <div className='buttons'>
+            <AddToCart className="addButton" onClick={() => {AddElement(name); CartCircle }}>Add to Cart</AddToCart>
+            {/* <div className='buttons'>
             <AddToFavourites />
             <AddToCompare />
-            </div>
-
+            </div> */}
+            
         </Container>
     )
 

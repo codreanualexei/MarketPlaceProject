@@ -9,6 +9,7 @@ import { all, itemName, number } from '../Item/item';
 import { useEffect, useRef } from 'react';
 import { CartCircle } from '../NavBar/navBar';
 import { withTheme } from 'styled-components';
+import {loadStripe} from '@stripe/stripe-js';
 
 //Increase, Decrease si shoppingCart sunt functii diferite si au state diferit !
 export function increase (x) {
@@ -86,13 +87,66 @@ export function ShoppingCart (props) {
       )
   }, [])
    
+
+
+ //HTTP request cu metoda 'POST' (adica dai parametri requestului)
+ // fetch('route',{JSON parameters})
+ //Daca apesi butonul se executa request cu parametri (POST) si te redirectioneaza pe pagina de plata
+// In continuarea pentru plata trebuie sa faci un array pt cart
+const stripePromise = loadStripe("pk_test_51JtYOwDdCFBi5ZCFkATMF7Bhw0AihvQNRI7IGESELNOdUGiXik6VaG571xXomo5mnYDUG450qLgjxmqg4kGjgoLr00tLv8BMpx")
+
+async function pay () {
+  const stripe = await stripePromise;
+
+  console.log("fuctia PAY")
+  fetch('/api/payment',{
+   headers: {"Content-Type":"application/json"},
+   method:"POST",
+   body:JSON.stringify({
+    "email":"contact.andreiescu@gmail.com",
+    "description":"blabla",
+    "itemList":[{
+      "_id":"61a53e4e2836777d8160da6c",
+      "units":"5"
+    },
+    {
+      "_id":"61a53fe72836777d8160da74",
+      "units":"3"
+    }
+  ]
+  })
+  })
+  .then( (response)=>{
+   return response.json()
+  })
+  .then((session)=>{
+   if(session.message){
+     alert(session.message)
+     return
+   }else
+   console.log(session.id) //Asta dupa plata o sa-l trimitem la server
+   const result = stripe.redirectToCheckout({sessionId:session.id})
+   return result
+   
+  })
+  .then((result)=>{
+   if(result.error){
+     alert(result.error.message)
+   }
+  })
+  .catch((error)=>{
+   console.log("error",error)
+  })
+}
+
     return (
         <section className="shoppingCart">
             <section className='navBar'>
-                <NavBar/>
+                <NavBar />
             
             </section>
             <section className='content' >
+            <div className='objects'>
                 {itemName.length === 0 &&(
                     <div className='alignEmptyCart'>
                         <div className='emptyCart'>Nu ai niciun produs in cos.</div>
@@ -125,7 +179,12 @@ export function ShoppingCart (props) {
                 </div>
                
 
+                </div>
+                <section className='payment'>
+                <button className='paymentButton' onClick={() => pay()}>Pay Default</button>
             </section>
+            </section>
+            
 
         </section>
     )

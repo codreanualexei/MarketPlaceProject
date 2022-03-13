@@ -1,10 +1,12 @@
 .price {
     display: inline-flex;
     margin: auto;
+    width: 20vw;
 }
 .buttons {
     display: inline-flex;
     margin: auto;
+
 }
 .cartIcon {
     height: 5.5vh;

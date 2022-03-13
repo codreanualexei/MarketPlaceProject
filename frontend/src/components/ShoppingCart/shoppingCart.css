@@ -27,8 +27,34 @@
     display: inline-flex;
     margin-top: 3vh;
     display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-areas: 'objects payment';
+    grid-template-rows: 100%;
+    grid-template-columns: 60% 40%;
+}
+.objects {
+    width: 60vw;
+    grid-area: objects;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+    display: inline-flex;
+}
+.payment {
+    width: 40vw;
+    grid-area: payment;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+}
+.paymentButton {
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
 }
 .emptyCart {
     font-size: 20px;
@@ -64,11 +90,12 @@
     font-size: 20px;
     font-weight: 300;
     line-height: 1.24;
-    color: #fff;
+    color: #8E888A;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10vh;
     font-family: 'Poppins';
+    font-weight: 600;
 }
 .quantity {
     float: left;
@@ -108,7 +135,7 @@
     margin-left: 3vw;
     background-color: #0C0A0F;
     height: 160px;
-    width: 60vw;
+    width: 50vw;
     border-radius: 5%;
     margin-bottom: 5vh;
     display: flex;
@@ -122,6 +149,8 @@
     font-weight: 500;
     font-family: Poppins;
     color: #8E888A;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 .quantityButton {
     font-weight: 700;
