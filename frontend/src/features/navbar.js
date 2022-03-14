@@ -6,9 +6,12 @@ export const navBarSlice = createSlice({
         itemCnt:0
     },
     reducers:{
-        increment: (state,action)=>{
+        increment: (state)=>{
             state.itemCnt=state.itemCnt+1;
         },
+        decrement: (state)=>{
+            state.itemCnt=state.itemCnt-1;
+        }
 
     }
 });
