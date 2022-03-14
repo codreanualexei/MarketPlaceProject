@@ -7,6 +7,8 @@ import useForceUpdate from 'use-force-update';
 import { useState } from 'react';
 import { useEffect, fetchData, forceUpdate, styles } from 'react';
 
+import { useSelector } from 'react-redux';
+
 const Cart = styled.div`
     width: 10vw;
     height: 10vh;
@@ -43,8 +45,8 @@ const Description = styled.div`
 
 export function NavBar(props) {
     
-    const numberOfItems = props.numberOfItems;
-
+    const numberOfItems = useSelector(state=>{return state.navbar.itemCnt})
+    console.log("itemuri in cart: ",numberOfItems)
     const history = useHistory();
     const shoppingCartRoute = () => {
         history.push("/shoppingCart");

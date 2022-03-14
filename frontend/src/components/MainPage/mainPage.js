@@ -6,6 +6,9 @@ import { ThemeConsumer } from 'styled-components'
 import { useState, useEffect } from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 
+import { increment } from '../../features/navbar';
+import { useDispatch, useSelector} from 'react-redux';
+import { addItem } from '../../features/shoppingCart';
 
 export function MainPage(props) {
   const [error, setError] = useState(null);
@@ -130,20 +133,26 @@ async function pay () {
   })
 }
 
+const itemsSh = useSelector(state=>{ return state.shoppingCart.items})
+
+console.log("items:",itemsSh)
+const dispatch = useDispatch()
 
     return (
         <section className='mainPage'>
             <section className='navBar'>
-                <NavBar numberOfItems={number}/> 
+                <NavBar/> 
 
             </section>
             <section className='mainContent'>
 {/*             
             <button onClick={() => pay()}>Pay Default</button> */}
-
+            <button onClick={()=>{dispatch(increment())}}>increment items</button>
+          
+            <button onClick={()=>{dispatch(addItem({name:'produs',quantity:'2',price:'100'}))}}>add item</button>
             {items.map(item => (
           <div key={item._id}>
-            {Item(<img src="{{server + item.image}}"/>, item.title, item.description, item.price)}
+           
           </div>))}
             </section>
 
