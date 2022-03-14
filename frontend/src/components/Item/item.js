@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 import "./item.css";
-import CartIcon from '../../../src/components/Item/cartIcon.png';
+// import CartIcon from '../../../src/components/Item/cartIcon.png';
 // import { AddToFavourites } from "./addToFavourites";
-import { useState } from 'react';
-import { ShoppingCart } from "../ShoppingCart/shoppingCart";
-import { refreshPage } from "../NavBar/navBar";
-import { CartCircle } from "../NavBar/navBar";
+// import { useState } from 'react';
+// import { ShoppingCart } from "../ShoppingCart/shoppingCart";
+// import { refreshPage } from "../NavBar/navBar";
+// import { CartCircle } from "../NavBar/navBar";
 
 
 const Container = styled.div`
@@ -51,10 +51,10 @@ font-family: Poppins;
 font-size: 1.5vw;
 text-align: center;
 `
-const Rating = styled.div`
-margin: auto;
-height: 1vh;
-`
+// const Rating = styled.div`
+// margin: auto;
+// height: 1vh;
+// `
 const Price = styled.div`
 margin:auto;
 margin-right:auto;
@@ -75,14 +75,14 @@ font-weight: 600;
 font-family: Poppins;
 font-size: 0.9vw;
 `
-const NewPrice = styled.div`
-height: 2vh;
-width: 5vw;
-color: #8E888A;
-font-weight: 600;
-font-family: Poppins;
-font-size: 1.3vw;
-`
+// const NewPrice = styled.div`
+// height: 2vh;
+// width: 5vw;
+// color: #8E888A;
+// font-weight: 600;
+// font-family: Poppins;
+// font-size: 1.3vw;
+// `
 const AddToCart = styled.button`
 height: 6vh;
 width: 10vw;
@@ -102,23 +102,23 @@ cursor: pointer;
     transform: translateY(0.5vh);
 }
 `
-const AddToFavourites = styled.button`
-height: 4vh;
-width: 2vw;
-margin-right: 1vw;
-background-color: #1b1621;
-border-radius: 15%;
-border: none;
-cursor: pointer;
-`
-const AddToCompare = styled.button`
-height: 4vh;
-width: 2vw;
-background-color: #1b1621;
-border-radius: 15%;
-border: none;
-cursor: pointer;
-`
+// const AddToFavourites = styled.button`
+// height: 4vh;
+// width: 2vw;
+// margin-right: 1vw;
+// background-color: #1b1621;
+// border-radius: 15%;
+// border: none;
+// cursor: pointer;
+// `
+// const AddToCompare = styled.button`
+// height: 4vh;
+// width: 2vw;
+// background-color: #1b1621;
+// border-radius: 15%;
+// border: none;
+// cursor: pointer;
+// `
 export var all = [];
 export var itemName = [];
 export var number = [];
@@ -156,16 +156,16 @@ export function AddElement (x) {
 }
 
 
-export default function Item(props) {
-   
-    const description = props.description
-    const name = props.name
-    const itemPrice = props.itemPrice
-    const image = props.image
-    const CartCircle = props.CartCircle
+export default function Item(image, name, description, itemPrice, cartCircle) {
+    // const image = props.image
+    // const name = props.name
+    // const description = props.description
+    // const itemPrice = props.itemPrice
+    
+    // const CartCircle = props.CartCircle
     //const addElement = props.addItem
 
-    const server = 'https://andreiescu.herokuapp.com/uploads/1638219342974.png'
+    // const server = 'https://andreiescu.herokuapp.com/uploads/1638219342974.png'
 
 
     return (
@@ -190,7 +190,7 @@ export default function Item(props) {
             <Price> {itemPrice + " RON"}</Price>
             {/* <NewPrice> {newPrice}</ NewPrice> */}
             </div>
-            <AddToCart className="addButton" onClick={() => {AddElement(name); CartCircle }}>Add to Cart</AddToCart>
+            <AddToCart className="addButton" onClick={() => {AddElement(name);}}>Add to Cart</AddToCart>
             {/* <div className='buttons'>
             <AddToFavourites />
             <AddToCompare />

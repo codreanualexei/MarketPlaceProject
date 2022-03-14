@@ -1,0 +1,27 @@
+
+.welcome {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background: #0C0A0F;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: 'r1' 'r2';
+}
+.title {
+    grid-area: r1;
+    display: flex;
+    z-index:3;
+    width: 30vw;
+    position: relative;
+}
+.pictures {
+    grid-area: r2;
+}
+.poza {
+    height: 20vh;
+    width: 25vw;
+    margin-top: 0vh;
+    position: absolute;
+}

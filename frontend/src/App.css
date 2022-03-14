@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+.nav {
+  position: fixed;
+  z-index:2;
+  /* grid-area: nav; */
+  height: 10vh;
+  width: 100vw;
+  background-color: #0C0A0F;
+  box-shadow: 0 10px 25px rgba(12, 10, 15,1);
+}
