@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { increment } from "../../features/navbar";
+import { addItem, removeItem } from "../../features/shoppingCart";
+import { useDispatch, useSelector} from "react-redux";
+
 // import ReactStars from "react-rating-stars-component";
 import "./item.css";
 // import CartIcon from '../../../src/components/Item/cartIcon.png';
@@ -51,10 +55,7 @@ font-family: Poppins;
 font-size: 1.5vw;
 text-align: center;
 `
-// const Rating = styled.div`
-// margin: auto;
-// height: 1vh;
-// `
+
 const Price = styled.div`
 margin:auto;
 margin-right:auto;
@@ -75,14 +76,7 @@ font-weight: 600;
 font-family: Poppins;
 font-size: 0.9vw;
 `
-// const NewPrice = styled.div`
-// height: 2vh;
-// width: 5vw;
-// color: #8E888A;
-// font-weight: 600;
-// font-family: Poppins;
-// font-size: 1.3vw;
-// `
+
 const AddToCart = styled.button`
 height: 6vh;
 width: 10vw;
@@ -102,104 +96,32 @@ cursor: pointer;
     transform: translateY(0.5vh);
 }
 `
-// const AddToFavourites = styled.button`
-// height: 4vh;
-// width: 2vw;
-// margin-right: 1vw;
-// background-color: #1b1621;
-// border-radius: 15%;
-// border: none;
-// cursor: pointer;
-// `
-// const AddToCompare = styled.button`
-// height: 4vh;
-// width: 2vw;
-// background-color: #1b1621;
-// border-radius: 15%;
-// border: none;
-// cursor: pointer;
-// `
-export var all = [];
-export var itemName = [];
-export var number = [];
-export var nrOfItems=0;
-// export var nrOfItems2=0;
-
-    // const onAdd = (product) => {
-    //     const exist = cartItems.find((x) => x.id === product.id);
-    //     if(exist) {
-    //         setCartItems(cartItems.map((x) => x.id === product.id ? {...exist, qty: exist.qty +1} : x));
-    //     } else {
-    //         setCartItems([...cartItems, { ...product, qty: 1}]);
-    //     }
-    //     console.log("aaa");
-    // }
-export function AddElement (x) {
-    console.log(x);
-    const exist = itemName.includes(x);
-        if(exist) {
-            var a = number[itemName.indexOf(x)];
-            number.splice(itemName.indexOf(x), 1, a+1);
-            console.log(a);
-        } else {
-            number.push(1);
-            itemName.push(x);
-        }
-        
-    console.log(itemName);
-    console.log(number);
-    all = [itemName, number];
-    console.log(all);
-    // nrOfItems2 ++;
-    // console.log("DIN FUNCTIE " + nrOfItems2);
-    return x;
-}
 
 
-export default function Item(image, name, description, itemPrice, cartCircle) {
-    // const image = props.image
-    // const name = props.name
-    // const description = props.description
-    // const itemPrice = props.itemPrice
-    
-    // const CartCircle = props.CartCircle
-    //const addElement = props.addItem
+export default function Item(_id,image, name, description, itemPrice) {
 
-    // const server = 'https://andreiescu.herokuapp.com/uploads/1638219342974.png'
-
+    const dispatch = useDispatch()
 
     return (
         <Container>
-            <Image >{image}</Image>
+            <Image>{image}</Image>
             <Name > {name}</Name>
-            {/* <Rating>
-                <ReactStars
-                    count={5}
-                    value = {stars}
-                    size={25}
-                    isHalf={true}
-                    emptyIcon={<i className="far fa-star"></i>}
-                    halfIcon={<i className="fa fa-star-half-alt"></i>}
-                    fullIcon={<i className="fa fa-star"></i>}
-                    activeColor="#fc9f07"
-                    edit = {false}
-                />
-            </ Rating> */}
             <Description> {description} </Description>
             <div className='price'>
             <Price> {itemPrice + " RON"}</Price>
-            {/* <NewPrice> {newPrice}</ NewPrice> */}
             </div>
+<<<<<<< HEAD
             <AddToCart className="addButton" onClick={() => {AddElement(name); }}>Add to Cart</AddToCart>
             {/* <div className='buttons'>
             <AddToFavourites />
             <AddToCompare />
             </div> */}
             
+=======
+            <AddToCart className="addButton" onClick={  ()=>{ dispatch(increment()); dispatch(addItem({_id:_id,name:name,quantity:1,price:itemPrice})) } }  > Add to Cart</AddToCart>
+        
+>>>>>>> 3c73386b28e92a6b54002b159343ba65253f84b7
         </Container>
     )
 
 }
-// export default onAdd() {
-
-// }
