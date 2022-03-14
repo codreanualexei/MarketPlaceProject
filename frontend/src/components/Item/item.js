@@ -110,17 +110,8 @@ export default function Item(_id,image, name, description, itemPrice) {
             <div className='price'>
             <Price> {itemPrice + " RON"}</Price>
             </div>
-<<<<<<< HEAD
-            <AddToCart className="addButton" onClick={() => {AddElement(name); }}>Add to Cart</AddToCart>
-            {/* <div className='buttons'>
-            <AddToFavourites />
-            <AddToCompare />
-            </div> */}
-            
-=======
             <AddToCart className="addButton" onClick={  ()=>{ dispatch(increment()); dispatch(addItem({_id:_id,name:name,quantity:1,price:itemPrice})) } }  > Add to Cart</AddToCart>
         
->>>>>>> 3c73386b28e92a6b54002b159343ba65253f84b7
         </Container>
     )
 
