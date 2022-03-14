@@ -190,7 +190,7 @@ export default function Item(props) {
             <Price> {itemPrice + " RON"}</Price>
             {/* <NewPrice> {newPrice}</ NewPrice> */}
             </div>
-            <AddToCart className="addButton" onClick={() => {AddElement(name); CartCircle }}>Add to Cart</AddToCart>
+            <AddToCart className="addButton" onClick={() => {AddElement(name); CartCircle() }}>Add to Cart</AddToCart>
             {/* <div className='buttons'>
             <AddToFavourites />
             <AddToCompare />

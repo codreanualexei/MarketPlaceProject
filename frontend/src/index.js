@@ -5,10 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import {configureStore} from '@reduxjs/toolkit'
+import { Provider } from 'react-redux';
+import navBarReducer from './features/navbar'
+import shoppingCartReducer from './features/shoppingCart';
+
+const store = configureStore({
+  reducer:{
+    navbar:navBarReducer,
+    shoppingCart:shoppingCartReducer,
+  }
+})
 ReactDOM.render(
+  <Provider store={store}>
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
