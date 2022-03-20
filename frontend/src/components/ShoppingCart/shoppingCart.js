@@ -33,19 +33,19 @@ async function pay () {
   const stripe = await stripePromise;
 
   console.log("fuctia PAY")
-  fetch('/api/payment',{
+  fetch('/api/creatependingcommand',{
    headers: {"Content-Type":"application/json"},
    method:"POST",
    body:JSON.stringify({
-    "email":"contact.andreiescu@gmail.com",
+    "email":"codreanualexeialexandru@gmail.com",
     "description":"blabla",
     "itemList":[{
       "_id":"61a53e4e2836777d8160da6c",
-      "units":"5"
+      "units":"1"
     },
     {
       "_id":"61a53fe72836777d8160da74",
-      "units":"3"
+      "units":"1"
     }
   ]
   })
@@ -100,6 +100,7 @@ async function pay () {
                                 <button className='quantityButton' onClick={() => {dispatch(increment()); dispatch(addItem({_id:item._id,name:item.name,quantity:1,price:item.price})) }}>+</button>
                                 <div className='nr' ref={myContainer}>{}</div>
                                 <button className='quantityButton' onClick={() => {dispatch(decrement()); dispatch(removeItem({_id:item._id,name:item.name,quantity:1,price:item.price})) }}>-</button>
+                                                                                                            
                             </div>
                         </div>
          

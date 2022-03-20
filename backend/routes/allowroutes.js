@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 const path = require('path')
+
 const upload = require('../controllers/upload/uploadimg')
 const DatabaseCreate = require('../controllers/database/create')
 const DatabaseFind = require('../controllers/database/find')
 const pay = require('../controllers/stripe/stripe')
 const Auth = require('../controllers/auth/auth')
 
+//
+router.get('/validatetoken:token', Auth.verifyEmailUsingToken)
 
 router.get('/getAllItems',DatabaseFind.findAllItems)
 router.get('/api/getAllItems',DatabaseFind.findAllItems)

@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken')
 const crypto = require("crypto");
 const pendUser = require("../../models/pendingUsers")
 
+// Autentificarea emailului inainte de a plasa comanda plata cash! mai trebuie facut !
 
 const sendEmai = (toEmail,token)=>{
     var nodemailer = require('nodemailer');
@@ -56,7 +57,7 @@ const verifyEmailUsingToken = (req,res)=>{
 }
 
 //Sing Up
-const SingUp = (req,res)=>{
+const authEmail = (req,res)=>{
     User.findOne({$or:[{"email":req.body.email},{"tel":req.body.tel}]}, function (er, response) {
             
         if(response){
@@ -73,13 +74,9 @@ const SingUp = (req,res)=>{
 
 }
 
-const validPass = (pass,hash)=>{
-
-    return bcrypt.compareSync(pass,hash)
-}
 
 const genToken = (id,secret)=>{
     return jwt.sign({"_id":id},secret,{expiresIn:"60s"});
 }
 
-module.exports = {SingUp,sendEmai,verifyEmailUsingToken}
+module.exports = {authEmail,sendEmai,verifyEmailUsingToken}

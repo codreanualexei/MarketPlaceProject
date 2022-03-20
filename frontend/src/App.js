@@ -19,7 +19,7 @@ function App() {
         <section className='routes'> */}
         <BrowserRouter>
             <Switch>
-                {/* <Route path="/" component={AccountBox} exact /> */}
+                 <Route path="/login" component={AccountBox} /> 
                 <Route path = '/' component={Welcome} exact/>
                 <Route path='/main' component={MainPage} />
                 <Route path='/shoppingCart' component={ShoppingCart} />

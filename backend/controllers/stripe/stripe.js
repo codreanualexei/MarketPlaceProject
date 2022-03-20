@@ -25,14 +25,14 @@ var createItem = (title,price,quantity)=>{
 
 const createSession = async (items,req,res)=>{
     
-    console.log("crearea sesiunii")
+    console.log("crearea sesiunii 2")
     const session =  await stripe.checkout.sessions.create(
         {
             payment_method_types: ['card'],
             line_items:items,
             mode:"payment",
-            success_url:process.env.DOMAIN+'api/donepay',
-            cancel_url:process.env.DOMAIN+"api/cancelpay"
+            success_url:process.env.DOMAIN+'/api/donepay',
+            cancel_url:process.env.DOMAIN+"/api/cancelpay"
         })
         //Trebuie adaugat id-ul in DB
                 console.log("pay_ID:",session.payment_intent)
@@ -58,7 +58,7 @@ const createSession = async (items,req,res)=>{
                         console.log("detalii dupa plata:",intent)
                     }else{
                         
-                        res.status(400).json({"message":"eroare creare plata"})
+                        res.status(400).json({"message":"Pentru acest email s-a creat deja o comanda"})
                     }
 
                 }
@@ -68,6 +68,33 @@ const createSession = async (items,req,res)=>{
                     return
                 }
                 
+}
+
+const deletePayment = async(req,res)=>{
+
+    try{
+    console.log(req.cookies.signatureandreiescuP)
+    let commandId = encrypt.decrypt(req.cookies.signatureandreiescui)
+         console.log("id: ",commandId)
+
+          pendingCommands.findByIdAndDelete(commandId)
+           .then((done)=>{
+            res.status(200).json({"message":"Comanda a fost eliminata"})
+           })
+           .catch((err)=>{
+               console.log("eroare cautare id comanda: ",err)
+            res.status(400).json({"message":"eroare, va rog sa ne contactati"})
+           }) 
+    
+        .catch((err)=>{
+            res.status(400).json({"message":"eroare cautare comanda, va rog sa faceti o noua comanda sau sa ne contactati"})
+        })
+    
+}
+catch(err){
+    res.send({"message":"error data"});
+}
+
 }
 
 const checkPaymentStatus = async(req,res)=>{

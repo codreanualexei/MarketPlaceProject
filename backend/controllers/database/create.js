@@ -4,30 +4,13 @@ const Comment = require('../../models/comment')
 const pendingUsers = require('../../models/pendingUsers')
 const pendingCommands = require('../../models/pendingCommands')
 const doneCommands = require('../../models/doneCommands')
+const {findEmaiOnPendingCommands} = require('./find')
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 const SALT = 7;
 const auth = require('../auth/auth')
 
-
-const createComment = async (req,res)=>{
-    var result
-
-    const newItem = new Comment({
-        "title":req.body.title,
-        "comments":req.body.comments,
-        "User":req.body.userId
-    })
-    
-    try{
-    result = await newItem.save()
-    }
-    catch(err){
-    result = err
-    }
-    return result
-}
 
 const createItem = (req,res)=>{
 console.log(req.body)
@@ -102,10 +85,35 @@ const createPendingCommand = async (req,res)=>{
         
     });
 
+    
     //waite for calculation...
     await delay(3000)
     if(total==0) await delay(5000)
     if(total==0) res.status(400).json({"message":"timeout, problem with loading data from database"})
+
+
+    let exist = await findEmaiOnPendingCommands(email)
+    if(exist){
+        console.log("Email-ul:",email," Este deja inregistrat")
+
+        const newItem = {
+            "email":req.body.email,
+            "description":req.body.description,
+            "total": total,
+            "items": listItems
+    
+        }
+
+        try{
+            let save=  await pendingCommands.findOneAndUpdate({"email":email},newItem)
+            res.status(400).json({"message":"Comanda a fost actualizată, vă rugăm să vă verificați emailul"})
+        }catch(err){
+              console.log("eroare: ",err)
+              res.status(400).json({"message":"eroare upload la comanda cand avem deja emailul"})
+          }
+
+        return ;
+    }
 
     const newItem = new pendingCommands({
         "email":req.body.email,
@@ -118,7 +126,7 @@ const createPendingCommand = async (req,res)=>{
     newItem.save()
         .then((result)=>{
 
-            res.status(200).json({"message":"List of items added successfully ",result})
+            res.status(200).json({"message":"Comanda a fost adăugată, vă rugăm să verificați emailul pentru confirmare ! ",result})
             
         })
         .then(  (res)=>{
@@ -172,6 +180,31 @@ const plaincreatePendingCommand = async (req)=>{
         return false
     }
 
+    
+    let exist = await findEmaiOnPendingCommands(email)
+    if(exist){
+        console.log("Emailul:",email," Este deja inregistrat")
+
+        const newItem = {
+            "email":req.body.email,
+            "description":req.body.description,
+            "total": total,
+            "items": listItems
+    
+        }
+
+        try{
+            let save=  await pendingCommands.findOneAndUpdate({"email":email},newItem)
+            return save._id
+          }catch(err){
+              console.log("eroare: ",err)
+              return false
+          }
+
+        return true;
+    }
+
+    
     const newItem = new pendingCommands({
         "email":req.body.email,
         "description":req.body.description,
@@ -226,9 +259,9 @@ const verifyToken= (req, res)=>{
 
       pendingCommands.findByIdAndDelete(resToken[1])
       .then(command=>{
-          console.log("datele:",command.email)
+          console.log("ITEMS: ",command.items)
         if(command.email == resToken[0]){
-        createDoneCommands(command.email,command.userId,command.description,command.total,command.listItems)
+        createDoneCommands(command.email,command.userId,command.description,command.total,command.items)
          res.status(200).send(command)
          console.log("STATUS 200, Sa gasit: ",command)
 
@@ -306,4 +339,4 @@ const createPendingUser = (req,res,token)=>{
          })
  }
 
-module.exports={createDoneCommands,plaincreatePendingCommand,verifyToken,createComment,createItem,createUser,HashGen,createPendingUser,createPendingCommand}
+module.exports={createDoneCommands,plaincreatePendingCommand,verifyToken,createItem,createUser,HashGen,createPendingUser,createPendingCommand}

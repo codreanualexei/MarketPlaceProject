@@ -11,8 +11,8 @@ var MyModel = mongoose.model('doneCommand', new Schema(
         },
         items:[ 
             {
-            type:mongoose.Types.ObjectId,
-            ref:"Item",
+            _id:{type:mongoose.Types.ObjectId}
+            ,
             units:{
                 type:Number,
                 default:"1"
@@ -24,7 +24,7 @@ var MyModel = mongoose.model('doneCommand', new Schema(
             required:true
         },
         doneAt: { 
-            type: Date, default: new Date(Date.UTC(0, 0, 0, 4, 0, 0)+ Date.now())
+            type: Date, default: Date.now()
              }
      }));
         

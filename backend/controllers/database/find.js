@@ -2,18 +2,8 @@
 const User = require('../../models/user')
 const Items = require('../../models/item')
 const doneCommands = require("../../models/doneCommands")
+const pendingCommands = require("../../models/pendingCommands")
 
-const findAllUsers=(req,res)=>{
-
-     User.find({}).populate("items")
-       .then(items=>{
-           res.status(200).send(items)
-       })
-       .catch(wrong=>{
-            res.status(400).send(wrong)
-       })
-    
-}
 
 const findAllDoneCommands=(req,res)=>{
 
@@ -27,42 +17,7 @@ const findAllDoneCommands=(req,res)=>{
    
 }
 
-    const findUser=(req,res)=>{
-
-        User.find({ fname: req.body.fname }, function (er, response) {
-            
-            if(response){
-                res.status(200).send(response)
-            }else{
-                res.status(400).json({"message": er})
-            }
-        }).populate("items")
-    }
-    
-    const findUserByemail=(req,res)=>{
-        User.find({"email": req.body.email}, function (er, response) {
-            
-            if(response){
-                res.status(200).json({"message":"user exist"})
-            }else{
-                res.status(400).json({"message": er})
-            }
-        })
-    }
-    
-    const findUserByid=(req,res)=>{
-    
-        User.findById(req.body._id, function (er, response) {
-            
-            if(response){
-                res.status(200).send(response)
-            }else{
-                res.status(400).json({"message": null})
-            }
-        }).populate("items")
-    }
-
-    const findAllItems=(req,res,next)=>{
+const findAllItems=(req,res,next)=>{
 
         Items.find({})
           .then(items=>{
@@ -72,10 +27,23 @@ const findAllDoneCommands=(req,res)=>{
           .catch(wrong=>{
                res.status(400).send(wrong)
           })
+}
+
+const findEmaiOnPendingCommands= async (_email)=>{
+
+    console.log("FINS:",_email)
+   let rez = await pendingCommands.find({"email":_email})
+   console.log("FINS:",rez)
+   if(rez.length!=0){
+    console.log("email:",rez[0].email,"email:",_email)
+    if(rez[0].email===_email) return 1
+    else return 0
    }
+   else return 0
 
+}
 
-   const findArrOfItems=(req,res)=>{
+const findArrOfItems=(req,res)=>{
     console.log("Items:")
     console.log(req.body.items)
 
@@ -91,4 +59,4 @@ const findAllDoneCommands=(req,res)=>{
    
 }
 
-    module.exports = {findAllDoneCommands,findArrOfItems,findAllUsers,findUser,findUserByemail,findUserByid,findAllItems}
+    module.exports = {findAllDoneCommands,findArrOfItems,findAllItems,findEmaiOnPendingCommands}

@@ -11,13 +11,13 @@ const pendUser = require("../../models/pendingUsers")
 
 const sendEmai = (toEmail,token)=>{
     var nodemailer = require('nodemailer');
-    var url = process.env.DOMAIN + '/validatetoken:'+token
+    var url = process.env.DOMAIN + '/api/validatetoken:'+token
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAILUSER,
-        pass: process.env.EMAILPASS
+        user: 'contact.andreiescu@gmail.com',
+        pass: '23.06.1992App!'
       }
     });
     
@@ -87,6 +87,8 @@ const genToken = (id,secret)=>{
 
 const LogIn =  (req,res)=>{
 
+    console.log(req.body)
+        
     User.findOne({"email":req.body.email}, function (er, response) {
             
         if(response){
@@ -94,7 +96,7 @@ const LogIn =  (req,res)=>{
             if(validPass(req.body.password,response.password)){
                 tok = genToken(response._id,process.env.TOKEN_SECRET)
 
-                res.status(200).header('auth-token',tok).json( {"message":"valid pass", "token": tok } )
+                res.status(200).cookie('authtoken',tok).redirect('/api/thepavel') 
             }else{
                 res.status(400).json({"message":"Wrong password or username"})
             }
@@ -108,7 +110,7 @@ const LogIn =  (req,res)=>{
 
 const verifyAccessToken= (req, res, next)=>{
 
-    const token = req.header('auth-token')
+    const token = req.cookies.authtoken
 
     if(!token) res.status(400).json({"message":"Incorrect Token"})
     else{

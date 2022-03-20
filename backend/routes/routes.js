@@ -8,26 +8,35 @@ const DatabaseFind = require('../controllers/database/find')
 const pay = require('../controllers/stripe/stripe')
 const Auth = require('../controllers/auth/auth')
 
-
 //checkout
 router.post('/payment',pay.payment)
 router.get('/donepay',pay.checkPaymentStatus)
+
+//get all items
 router.get('/getAllItems',DatabaseFind.findAllItems)
+
 //Find
 router.post('/findArrOfItems',DatabaseFind.findArrOfItems)
 
-//Above requires authentication with /login
+//Cash commands
+router.post('/creatependingcommand',DatabaseCreate.createPendingCommand)
+router.get('/validatetoken:token', DatabaseCreate.verifyToken)
+
+
+//Login and recieve a cookie with a token
 router.post('/login',Auth.LogIn)
 
 //Toke Verification 
 router.use(Auth.verifyAccessToken)
 
-//Pagina de adaugat
+//Add page
 router.get('/thepavel',(req,res)=>{
     res.render('addItem')
 })
+//All orders
 router.get('/getallcommands',DatabaseFind.findAllDoneCommands)
+
+//Create a new item
 router.post('/createitem',upload.single('image'), DatabaseCreate.createItem)
-router.post('/creatependingcommand',DatabaseCreate.createPendingCommand)
 
 module.exports = router;

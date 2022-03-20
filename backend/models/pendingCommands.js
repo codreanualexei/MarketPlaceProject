@@ -33,7 +33,7 @@ var newSchema = new Schema(
             required:true
         },
         createdAt: { 
-            "type": Date, expireAfterSeconds:300, default: new Date(Date.UTC(0, 0, 0, 4, 0, 0)+ Date.now())
+            "type": Date, expireAfterSeconds:300, default: Date.now()
              }
         
      },{  timestamps:true}
